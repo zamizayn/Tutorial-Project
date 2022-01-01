@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tutorial_project/modals/cats.dart';
+import 'package:tutorial_project/modals/usaModel.dart';
 import 'package:tutorial_project/repository/fetchDatas.dart';
 
 class ApiProvider with ChangeNotifier {
   Cats? catsData;
+  UsaData? datas;
 
   fetchDataFromRepo(BuildContext context) {
     FetchData data = FetchData();
@@ -12,6 +14,16 @@ class ApiProvider with ChangeNotifier {
 
   setCatsData(Cats cats) {
     this.catsData = cats;
+    notifyListeners();
+  }
+
+  fetchUsaData(BuildContext context) {
+    FetchData data = FetchData();
+    data.fetchUSAData(context);
+  }
+
+  setUSAData(UsaData usaData) {
+    this.datas = usaData;
     notifyListeners();
   }
 }

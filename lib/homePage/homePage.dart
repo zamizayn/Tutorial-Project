@@ -17,6 +17,8 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     Provider.of<ApiProvider>(context, listen: false).fetchDataFromRepo(context);
+    Provider.of<ApiProvider>(context, listen: false).fetchUsaData(context);
+
     listOfItems.add(SuperHero(
         name: "Iron Man",
         image: "https://i.ytimg.com/vi/8ugaeA-nMTc/maxresdefault.jpg",
@@ -75,6 +77,33 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
+            Consumer<ApiProvider>(
+              builder: (context, provider, child) {
+                return provider.datas != null
+                    ? ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: provider.datas!.data.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListTile(
+                              tileColor: Colors.blueGrey,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              leading: Icon(Icons.people),
+                              trailing: Icon(Icons.chevron_right),
+                              title: Text(
+                                  "Population is : " +
+                                      provider.datas!.data[index].population
+                                          .toString(),
+                                  style: TextStyle(color: Colors.white)),
+                            ),
+                          );
+                        })
+                    : CircularProgressIndicator();
+              },
+            )
           ],
         ),
       ),
