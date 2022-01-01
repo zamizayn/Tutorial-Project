@@ -63,7 +63,8 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Fact : "),
+                  //inside row with consumer
+                  Text("Fact is : "),
                   Consumer<ApiProvider>(
                     builder: (context, provider, child) {
                       return provider.catsData != null
