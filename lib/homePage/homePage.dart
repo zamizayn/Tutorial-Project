@@ -18,6 +18,7 @@ class _HomePageState extends State<HomePage> {
 
     Provider.of<ApiProvider>(context, listen: false).fetchDataFromRepo(context);
     Provider.of<ApiProvider>(context, listen: false).fetchUsaData(context);
+    Provider.of<ApiProvider>(context, listen: false).fetchEntries(context);
 
     listOfItems.add(SuperHero(
         name: "Iron Man",
@@ -102,6 +103,53 @@ class _HomePageState extends State<HomePage> {
                           );
                         })
                     : CircularProgressIndicator();
+              },
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text("Entries"),
+            SizedBox(
+              height: 10,
+            ),
+            Consumer<ApiProvider>(
+              builder: (context, provider, child) {
+                return ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount:
+                        (provider.entriesPojo!.entries.length / 10).truncate(),
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.category,
+                            color: Colors.black,
+                          ),
+                          tileColor: Colors.grey.shade400,
+                          title: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(provider.entriesPojo!.entries[index].category
+                                  .toString()),
+                              Text(
+                                provider.entriesPojo!.entries[index].link,
+                                style:
+                                    TextStyle(fontSize: 12, color: Colors.blue),
+                              ),
+                              Text(
+                                provider
+                                    .entriesPojo!.entries[index].description,
+                                maxLines: 2,
+                                style: TextStyle(fontSize: 12),
+                                overflow: TextOverflow.ellipsis,
+                              )
+                            ],
+                          ),
+                        ),
+                      );
+                    });
               },
             )
           ],
