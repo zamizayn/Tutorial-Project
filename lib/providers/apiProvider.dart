@@ -15,6 +15,10 @@ class ApiProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  callAddData(BuildContext context, String name, String job) {
+    data.addData(context, name, job);
+  }
+
   fetchDataFromRepo(BuildContext context) {
     FetchData data = FetchData();
     data.getData(context);

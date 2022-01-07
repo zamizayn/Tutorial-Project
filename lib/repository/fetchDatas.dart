@@ -13,8 +13,17 @@ class FetchData {
   static String USA_DATA =
       "https://datausa.io/api/data?drilldowns=Nation&measures=Population";
   static String ENTRIES = "https://api.publicapis.org/entries";
+  static String ADD_DATA_URL = "https://reqres.in/api/users";
 
   var urlData = Uri.parse(URL);
+
+  void addData(BuildContext context, String username, String job) async {
+    var url = Uri.parse(ADD_DATA_URL);
+    Map<String, String> body = {"name": username, "job": job};
+    Map<String, String> header = {};
+    final response = await http.post(url, body: body);
+    log("RESPONSE IS" + response.body.toString());
+  }
 
   void getData(BuildContext context) async {
     Map<String, String> headers = {
