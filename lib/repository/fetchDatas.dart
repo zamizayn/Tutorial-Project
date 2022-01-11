@@ -14,6 +14,8 @@ class FetchData {
       "https://datausa.io/api/data?drilldowns=Nation&measures=Population";
   static String ENTRIES = "https://api.publicapis.org/entries";
   static String ADD_DATA_URL = "https://reqres.in/api/users";
+  static String checkNumberUrl =
+      "https://app.onfullymarketing.com/app/customer/customer-number-verification/";
 
   var urlData = Uri.parse(URL);
 
@@ -23,6 +25,14 @@ class FetchData {
     Map<String, String> header = {};
     final response = await http.post(url, body: body);
     log("RESPONSE IS" + response.body.toString());
+  }
+
+  void checkNumber(BuildContext context, String phoneNumber) async {
+    var checkUrl = Uri.parse(checkNumberUrl);
+    Map<String, String> body = {"phone_number": phoneNumber};
+    final response = await http.post(checkUrl, body: body);
+    Navigator.pop(context);
+    log("RESPONSE" + response.body.toString());
   }
 
   void getData(BuildContext context) async {

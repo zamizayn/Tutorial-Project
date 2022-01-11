@@ -3,6 +3,7 @@ import 'package:tutorial_project/modals/cats.dart';
 import 'package:tutorial_project/modals/entries.dart';
 import 'package:tutorial_project/modals/usaModel.dart';
 import 'package:tutorial_project/repository/fetchDatas.dart';
+import 'package:tutorial_project/utils/custom.dart';
 
 class ApiProvider with ChangeNotifier {
   Cats? catsData;
@@ -13,6 +14,11 @@ class ApiProvider with ChangeNotifier {
   setEntries(EntriesPojo pojo) {
     this.entriesPojo = pojo;
     notifyListeners();
+  }
+
+  checkNumberApi(BuildContext context, String phoneNumber) {
+    getLoading(context);
+    data.checkNumber(context, phoneNumber);
   }
 
   callAddData(BuildContext context, String name, String job) {

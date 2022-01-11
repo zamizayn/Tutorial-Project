@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 
 AppBar appBarContent(String title) {
   return AppBar(
@@ -41,7 +42,66 @@ showToast(String data) {
       fontSize: 16.0);
 }
 
-removeAndNavigate(BuildContext context,Widget widget){
+showLoading(BuildContext context) {
+  context.loaderOverlay.show();
+  return LoaderOverlay(
+    child: Container(
+      height: getHeight(context),
+      width: getWidth(context),
+      child: Text(""),
+    ),
+  );
+}
+
+hideLoading(BuildContext context) {
+  context.loaderOverlay.hide();
+  return LoaderOverlay(
+    child: Container(
+      height: getHeight(context),
+      width: getWidth(context),
+      child: Text(""),
+    ),
+  );
+}
+
+void getLoading(BuildContext context) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return Dialog(
+        child: Container(
+          color: Colors.white,
+          height: 200,
+          child: new Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              new CircularProgressIndicator(
+                color: Colors.black,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Loading , Please Wait...",
+                  style: TextStyle(color: Colors.black),
+                ),
+              )
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
+
+removeAndNavigate(BuildContext context, Widget widget) {
   Navigator.pushAndRemoveUntil(
     context,
     MaterialPageRoute(

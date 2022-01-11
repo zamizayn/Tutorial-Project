@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tutorial_project/homePage/addData.dart';
+import 'package:tutorial_project/homePage/dropDownUI.dart';
+import 'package:tutorial_project/homePage/postExample.dart';
+import 'package:tutorial_project/homePage/ratingBar.dart';
 import 'package:tutorial_project/modals/superheros.dart';
 import 'package:tutorial_project/providers/apiProvider.dart';
 import 'package:tutorial_project/utils/custom.dart';
@@ -212,13 +215,70 @@ class _HomePageState extends State<HomePage> {
           onTap: () {
             navigate(context, AddData());
           },
-          child: Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text("Add Data"),
-              )),
+          child: Container(
+            width: getWidth(context),
+            child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(child: Text("Add Data")),
+                )),
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        InkWell(
+          onTap: () {
+            navigate(context, PostExample());
+          },
+          child: Container(
+            width: getWidth(context),
+            child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(child: Text("POST EXAMPLE")),
+                )),
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        InkWell(
+          onTap: () {
+            navigate(context, RatingBarClass());
+          },
+          child: Container(
+            width: getWidth(context),
+            child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(child: Text("Rating")),
+                )),
+          ),
+        ),
+         SizedBox(
+          height: 20,
+        ),
+        InkWell(
+          onTap: () {
+            navigate(context, DropDownClass());
+          },
+          child: Container(
+            width: getWidth(context),
+            child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(child: Text("DropDown")),
+                )),
+          ),
         )
       ],
     );
