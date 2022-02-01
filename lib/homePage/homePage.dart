@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tutorial_project/homePage/addData.dart';
+import 'package:tutorial_project/homePage/currentLocation.dart';
 import 'package:tutorial_project/homePage/dropDownUI.dart';
 import 'package:tutorial_project/homePage/postExample.dart';
 import 'package:tutorial_project/homePage/ratingBar.dart';
+import 'package:tutorial_project/homePage/sharedPrefs.dart';
 import 'package:tutorial_project/modals/superheros.dart';
 import 'package:tutorial_project/providers/apiProvider.dart';
 import 'package:tutorial_project/utils/custom.dart';
@@ -262,7 +264,7 @@ class _HomePageState extends State<HomePage> {
                 )),
           ),
         ),
-         SizedBox(
+        SizedBox(
           height: 20,
         ),
         InkWell(
@@ -277,6 +279,42 @@ class _HomePageState extends State<HomePage> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Center(child: Text("DropDown")),
+                )),
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        InkWell(
+          onTap: () {
+            navigate(context, SharedPrefs());
+          },
+          child: Container(
+            width: getWidth(context),
+            child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(child: Text("Shared Prefs")),
+                )),
+          ),
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        InkWell(
+          onTap: () {
+            navigate(context, CurrentLocation());
+          },
+          child: Container(
+            width: getWidth(context),
+            child: Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(child: Text("Location")),
                 )),
           ),
         )

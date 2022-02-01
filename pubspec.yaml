@@ -43,6 +43,9 @@ dependencies:
   flutter_rating_bar: ^4.0.0
   dropdown_plus: ^0.0.9
   dropdown_button2: ^1.0.7
+  shared_preferences: ^2.0.12
+  show_up_animation: ^2.0.0
+ 
 
 dev_dependencies:
   flutter_test:
