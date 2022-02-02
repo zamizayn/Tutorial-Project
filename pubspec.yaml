@@ -45,6 +45,9 @@ dependencies:
   dropdown_button2: ^1.0.7
   shared_preferences: ^2.0.12
   show_up_animation: ^2.0.0
+  geolocator: ^8.0.5
+  geocode: ^1.0.1
+  razorpay_flutter: ^1.2.9
  
 
 dev_dependencies:

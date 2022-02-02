@@ -5,6 +5,7 @@ import 'package:tutorial_project/homePage/currentLocation.dart';
 import 'package:tutorial_project/homePage/dropDownUI.dart';
 import 'package:tutorial_project/homePage/postExample.dart';
 import 'package:tutorial_project/homePage/ratingBar.dart';
+import 'package:tutorial_project/homePage/rzpy.dart';
 import 'package:tutorial_project/homePage/sharedPrefs.dart';
 import 'package:tutorial_project/modals/superheros.dart';
 import 'package:tutorial_project/providers/apiProvider.dart';
@@ -62,6 +63,128 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    height: 70,
+                    width: getWidth(context),
+                    child: Card(
+                      color: Colors.green,
+                      child: Center(child: Text("Add Data")),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    height: 70,
+                    width: getWidth(context),
+                    child: Card(
+                      color: Colors.purple,
+                      child: Center(child: Text("Post Example")),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    height: 70,
+                    width: getWidth(context),
+                    child: Card(
+                      color: Colors.blue,
+                      child: Center(child: Text("Rating")),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      navigate(context, DropDownClass());
+                    },
+                    child: Container(
+                      height: 70,
+                      width: getWidth(context),
+                      child: Card(
+                        color: Colors.grey,
+                        child: Center(child: Text("DropDown")),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      navigate(context, SharedPrefs());
+                    },
+                    child: Container(
+                      height: 70,
+                      width: getWidth(context),
+                      child: Card(
+                        color: Colors.cyan,
+                        child: Center(child: Text("Shared Prefs")),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      navigate(context, CurrentLocation());
+                    },
+                    child: Container(
+                      height: 70,
+                      width: getWidth(context),
+                      child: Card(
+                        color: Colors.yellow,
+                        child: Center(child: Text("Location")),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      navigate(context, Razor());
+                    },
+                    child: Container(
+                      height: 70,
+                      width: getWidth(context),
+                      child: Card(
+                        color: Colors.cyan,
+                        child: Center(child: Text("Razorpay")),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              "Heroes List",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             listOfHeros(),
             Text(
               "Datas From Api",
@@ -120,42 +243,45 @@ class _HomePageState extends State<HomePage> {
             ),
             Consumer<ApiProvider>(
               builder: (context, provider, child) {
-                return ListView.builder(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount:
-                        (provider.entriesPojo!.entries.length / 10).truncate(),
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.category,
-                            color: Colors.black,
-                          ),
-                          tileColor: Colors.grey.shade400,
-                          title: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(provider.entriesPojo!.entries[index].category
-                                  .toString()),
-                              Text(
-                                provider.entriesPojo!.entries[index].link,
-                                style:
-                                    TextStyle(fontSize: 12, color: Colors.blue),
+                return provider.entriesPojo != null
+                    ? ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: (provider.entriesPojo!.entries.length / 10)
+                            .truncate(),
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListTile(
+                              leading: Icon(
+                                Icons.category,
+                                color: Colors.black,
                               ),
-                              Text(
-                                provider
-                                    .entriesPojo!.entries[index].description,
-                                maxLines: 2,
-                                style: TextStyle(fontSize: 12),
-                                overflow: TextOverflow.ellipsis,
-                              )
-                            ],
-                          ),
-                        ),
-                      );
-                    });
+                              tileColor: Colors.grey.shade400,
+                              title: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(provider
+                                      .entriesPojo!.entries[index].category
+                                      .toString()),
+                                  Text(
+                                    provider.entriesPojo!.entries[index].link,
+                                    style: TextStyle(
+                                        fontSize: 12, color: Colors.blue),
+                                  ),
+                                  Text(
+                                    provider.entriesPojo!.entries[index]
+                                        .description,
+                                    maxLines: 2,
+                                    style: TextStyle(fontSize: 12),
+                                    overflow: TextOverflow.ellipsis,
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        })
+                    : Text("");
               },
             )
           ],
