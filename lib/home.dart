@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:tutorial_project/homePage/chooseImage.dart';
 import 'package:tutorial_project/signUp/checkNumber.dart';
 import 'utils/custom.dart';
 
@@ -13,6 +15,34 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  bool _requireConsent = true;
+
+  @override
+  void initState() {
+    super.initState();
+    initPlatformState();
+  }
+
+  Future<void> initPlatformState() async {
+    if (!mounted) return;
+    OneSignal.shared.consentGranted(true);
+    OneSignal.shared.setLogLevel(OSLogLevel.verbose, OSLogLevel.none);
+    bool requiresConsent = await OneSignal.shared.requiresUserPrivacyConsent();
+    OneSignal.shared.setRequiresUserPrivacyConsent(requiresConsent);
+
+    OneSignal.shared.promptUserForPushNotificationPermission().then((value) {
+      log("Allowed permission");
+    });
+    final status = await OneSignal.shared.getDeviceState();
+    final String? userId = status!.userId;
+    log("TOKENNN" + userId.toString());
+    OneSignal.shared
+        .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
+      navigate(context, ChooseImage());
+    });
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

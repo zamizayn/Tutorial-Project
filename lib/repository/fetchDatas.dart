@@ -21,9 +21,9 @@ class FetchData {
 
   void addData(BuildContext context, String username, String job) async {
     var url = Uri.parse(ADD_DATA_URL);
-    Map<String, String> body = {"name": username, "job": job};
+    Map<String, String> bodyData = {"name": username, "job": job};
     Map<String, String> header = {};
-    final response = await http.post(url, body: body);
+    final response = await http.post(url, body: bodyData);
     log("RESPONSE IS" + response.body.toString());
   }
 
@@ -42,7 +42,6 @@ class FetchData {
     final response = await http.get(urlData);
     Map<String, dynamic> responseData = json.decode(response.body);
     Cats cats = Cats.fromJson(responseData);
-
     Provider.of<ApiProvider>(context, listen: false).setCatsData(cats);
     log("RESPONSE FROM API IS" + cats.fact);
   }

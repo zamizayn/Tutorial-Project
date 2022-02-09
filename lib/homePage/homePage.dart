@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tutorial_project/homePage/addData.dart';
+import 'package:tutorial_project/homePage/chooseImage.dart';
 import 'package:tutorial_project/homePage/currentLocation.dart';
 import 'package:tutorial_project/homePage/dropDownUI.dart';
 import 'package:tutorial_project/homePage/postExample.dart';
@@ -172,6 +173,43 @@ class _HomePageState extends State<HomePage> {
                       child: Card(
                         color: Colors.cyan,
                         child: Center(child: Text("Razorpay")),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      navigate(context, ChooseImage());
+                    },
+                    child: Container(
+                      height: 70,
+                      width: getWidth(context),
+                      child: Card(
+                        color: Colors.redAccent,
+                        child: Center(child: Text("ImagePicker")),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      navigate(context, Razor());
+                    },
+                    child: Container(
+                      height: 70,
+                      width: getWidth(context),
+                      child: Card(
+                        color: Colors.cyan,
+                        child: Center(child: Text("OneSignal")),
                       ),
                     ),
                   ),
