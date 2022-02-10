@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tutorial_project/homePage/addData.dart';
+import 'package:tutorial_project/homePage/charts.dart';
 import 'package:tutorial_project/homePage/chooseImage.dart';
 import 'package:tutorial_project/homePage/currentLocation.dart';
 import 'package:tutorial_project/homePage/dropDownUI.dart';
+import 'package:tutorial_project/homePage/inApp.dart';
 import 'package:tutorial_project/homePage/postExample.dart';
 import 'package:tutorial_project/homePage/ratingBar.dart';
 import 'package:tutorial_project/homePage/rzpy.dart';
+import 'package:tutorial_project/homePage/shareData.dart';
 import 'package:tutorial_project/homePage/sharedPrefs.dart';
 import 'package:tutorial_project/modals/superheros.dart';
 import 'package:tutorial_project/providers/apiProvider.dart';
@@ -202,14 +205,51 @@ class _HomePageState extends State<HomePage> {
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      navigate(context, Razor());
+                      navigate(context, ShareData());
                     },
                     child: Container(
                       height: 70,
                       width: getWidth(context),
                       child: Card(
                         color: Colors.cyan,
-                        child: Center(child: Text("OneSignal")),
+                        child: Center(child: Text("Share Data")),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      navigate(context, Charts());
+                    },
+                    child: Container(
+                      height: 70,
+                      width: getWidth(context),
+                      child: Card(
+                        color: Colors.yellowAccent,
+                        child: Center(child: Text("Charts")),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: InkWell(
+                    onTap: () {
+                      navigate(context, InApp());
+                    },
+                    child: Container(
+                      height: 70,
+                      width: getWidth(context),
+                      child: Card(
+                        color: Colors.cyan,
+                        child: Center(child: Text("WebView")),
                       ),
                     ),
                   ),

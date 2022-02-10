@@ -51,7 +51,9 @@ dependencies:
   image_picker: ^0.8.4+7
   onesignal_flutter: ^3.2.8
   #better_player: ^0.0.81
- 
+  share_plus: ^3.0.4
+  d_chart: ^0.0.4    
+  flutter_inappwebview: ^5.3.2
 
 dev_dependencies:
   flutter_test:

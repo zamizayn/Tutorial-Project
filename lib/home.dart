@@ -40,7 +40,6 @@ class _MainPageState extends State<MainPage> {
         .setNotificationOpenedHandler((OSNotificationOpenedResult result) {
       navigate(context, ChooseImage());
     });
-
   }
 
   @override
